@@ -1,8 +1,9 @@
 exports.version = 0.1
 exports.description = "Generate M3U playlists for local media players from file menu"
-exports.apiRequired = 12.92 // async fileMenu + plugin middleware behavior used here
+exports.apiRequired = 9.6 // api.misc
 exports.repo = "rejetto/hfs-local-player"
 exports.frontend_js = 'main.js'
+exports.preview = "https://github.com/user-attachments/assets/14cceb6e-40f0-4905-81e2-f285d231de76"
 
 const MEDIA_EXTS = new Set([
     'mp4', 'mkv', 'avi', 'mov', 'webm', 'm4v', 'wmv', 'flv', 'mpeg', 'mpg', 'ts', 'm2ts',
