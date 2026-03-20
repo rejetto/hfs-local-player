@@ -1,9 +1,9 @@
 # hfs-local-player
 
-Adds a file-menu action for video files: `Play on your local player`.
+Adds a file-menu action for:
+- audio/video files
+- folders (builds a playlist from supported files in that folder)
 
-The action downloads a generated `.m3u` playlist containing:
-- the selected video URL
-- all readable subtitle sidecar files matching `basename*.srt` in the same folder
-
-The playlist format uses `#EXTVLCOPT:sub-file=...` lines so players like VLC can load subtitles.
+The action downloads a generated `.m3u` playlist containing only the selected media URL.
+For folders, the playlist contains supported media files from the folder only (no recursion).
+Subtitle sidecar files are not included.

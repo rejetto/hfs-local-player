@@ -1,8 +1,11 @@
 'use strict';{
-    const VIDEO_EXTS = new Set(['mp4', 'mkv', 'avi', 'mov', 'webm', 'm4v', 'wmv', 'flv', 'mpeg', 'mpg', 'ts', 'm2ts'])
+    const MEDIA_EXTS = new Set([
+        'mp4', 'mkv', 'avi', 'mov', 'webm', 'm4v', 'wmv', 'flv', 'mpeg', 'mpg', 'ts', 'm2ts',
+        'mp3', 'm4a', 'aac', 'flac', 'wav', 'ogg', 'opus', 'wma',
+    ])
 
     HFS.onEvent('fileMenu', ({ entry }) => {
-        return isVideo(entry) && !entry?.cantOpen && {
+        return isSupportedEntry(entry) && !entry?.cantOpen && {
             id: 'local-player-m3u',
             icon: 'play',
             label: 'Play on your local player',
@@ -15,10 +18,12 @@
         }
     })
 
-    function isVideo(entry) {
-        if (!entry || entry.isFolder || entry.web)
+    function isSupportedEntry(entry) {
+        if (!entry || entry.web)
             return false
-        return VIDEO_EXTS.has(String(entry.ext || '').toLowerCase())
+        if (entry.isFolder)
+            return true
+        return MEDIA_EXTS.has(String(entry.ext || '').toLowerCase())
     }
 
     function showFirstUseHint() {
